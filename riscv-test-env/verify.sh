@@ -5,17 +5,17 @@ FAIL=0
 RUN=0
 
 for ref in ${SUITEDIR}/references/*.reference_output;
-do 
+do
     base=$(basename ${ref})
     stub=${base//".reference_output"/}
     sig=${WORK}/${RISCV_ISA}/${stub}.signature.output
 
     RUN=$((${RUN} + 1))
-    
+
     #
     # Ensure both files exist
     #
-    if [ -f ${ref} ] && [ -f ${sig} ]; then 
+    if [ -f ${ref} ] && [ -f ${sig} ]; then
         echo -n "Check $(printf %16s ${stub})"
     else
         echo    "Check $(printf %16s ${stub}) ... IGNORE"
@@ -32,7 +32,7 @@ do
 done
 
 # warn on missing reverse reference
-for sig in ${WORK}/${RISCV_ISA}/*.signature.output; 
+for sig in ${WORK}/${RISCV_ISA}/*.signature.output;
 do
     base=$(basename ${sig})
     stub=${base//".signature.output"/}
